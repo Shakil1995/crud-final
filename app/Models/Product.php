@@ -9,7 +9,7 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $fillable=[
+    protected $fillable = [
                         'category_id',
                         'name',
                         'price',
@@ -21,5 +21,10 @@ class Product extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function scopeIdDescending($query)
+    {
+        return $query->orderBy('id', 'DESC');
     }
 }

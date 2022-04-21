@@ -28,7 +28,7 @@
                             <a class="nav-link active" aria-current="page" href="{{ url('/') }}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('products.index') }}">Produt</a>
+                            <a class="nav-link" href="{{ route('products.index') }}">Products</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('products.create') }}">Add Product</a>
@@ -47,12 +47,6 @@
                 @yield('content')
             </div>
         </div>
-        <script type="text/javascript">
-            $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
-            $(document).ready(function() {
-                $('#datatable').DataTable();
-            });
-        </script>
 
         <!-- jQuery -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -69,5 +63,12 @@
 
         @stack('scripts')
 
+        <script type="text/javascript">   
+            // Hide Flash Message After 5 Second
+            $(document).ready(function(){
+                $('#datatable').DataTable();
+                $("#success").delay(2000).slideUp(300);
+            });
+        </script>
     </body>
 </html>

@@ -39,7 +39,7 @@
                                         <td>{{ ++$key }}</td>
                                         <td>
                                             @if ($product->image)
-                                                <img src="{{ asset('images/'.$product->image) }}" height="25" width="40">
+                                                <img src="{{ asset('product-images/'.$product->image) }}" height="25" width="40">
                                             @else
                                                 <small>No Image</small>
                                             @endif
@@ -48,7 +48,11 @@
                                         <td>{{ $product->name}}</td>
                                         <td>{{ $product->price}}</td>
                                         <td>
-                                            <input data-id="{{$product->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="Inactive" {{ $product->is_active ? 'checked' : '' }}>
+                                          @if ($product->is_active == 1)
+                                          <a class="btn btn-success" href="{{ route('products.changeStatus', $product->id) }}"> Active</a>
+                                          @else
+                                          <a class="btn btn-danger" href="{{ route('products.changeStatus', $product->id) }}"> Inactive</a>
+                                          @endif
                                         </td>
                                         <td>
                                             <div class="btn-group" role="group">
@@ -73,27 +77,3 @@
     </div>
 @endsection
 
-@push('scripts')
-    <script>
-        $(function() {
-            $('.toggle-class').change(function() {
-                var status = $(this).prop('checked') == true ? 1 : 0;
-                var product_id = $(this).data('id');
-                $.ajax({
-                    type: "GET",
-                    dataType: "json",
-                    url: '{{ route('product.changeStatus') }}',
-                    data: {'status': status, 'product_id': product_id},
-                    success: function(data){
-                        $("#successMessage").html(data.success).show().delay(3000).fadeOut(400);;
-                    }
-                });
-            })
-        })
-
-        // Hide Flash Message After 5 Second
-        $(document).ready(function(){
-            $("#success").delay(5000).slideUp(300);
-        });
-    </script>
-@endpush

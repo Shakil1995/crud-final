@@ -27,7 +27,7 @@
                                 <strong>Category Name :</strong>
                             </div>
                             <div class="col-10 p-2">
-                                {{ optional($product->category)->category_name ?? 'null' }}
+                                {{ optional($product->category)->category_name }}
                             </div>
 
                             <div class="col-2 p-2">

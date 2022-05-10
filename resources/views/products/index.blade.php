@@ -44,7 +44,7 @@
                                                 <small>No Image</small>
                                             @endif
                                         </td>
-                                        <td>{{ optional($product->category)->category_name ?? 'null' }}</td>
+                                        <td>{{ optional($product->category)->category_name }}</td>
                                         <td>{{ $product->name}}</td>
                                         <td>{{ $product->price}}</td>
                                         <td>
